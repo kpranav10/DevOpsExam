@@ -1,0 +1,34 @@
+#include<stdio.h>
+#include<string.h>
+#include<ctype.h>
+void main() {
+
+    char text[500], ch;
+    int key;
+    printf("Enter a message to encrypt: ");
+    scanf("%s", text);
+    printf("Enter the key: ");
+    scanf("%d", & key);
+    for (int i = 0;i< strlen(text); i++) {
+        ch = text[i];
+        if (islower(ch)) {
+            ch = (ch - 'a' + key) % 26 + 'a';
+        }
+        if (isupper(ch)) {
+            ch = (ch - 'A' + key) % 26 + 'A';
+        }
+        text[i] = ch;
+    }
+    printf("Encrypted message: %s", text);
+    for (int i = 0;i< strlen(text); i++) {
+        ch = text[i];
+        if (islower(ch)) {
+            ch = (ch - 'a' - key) % 26 + 'a';
+        }
+        if (isupper(ch)) {
+            ch = (ch - 'A' - key) % 26 + 'A';
+        }
+        text[i] = ch;
+    }
+    printf("\nDecrypted message: %s",text);
+}
